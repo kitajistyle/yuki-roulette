@@ -479,29 +479,36 @@ export default function App() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl"
           >
-            {/* Background Particles for Winner */}
+            {/* Background Image Particles for Winner */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              {[...Array(50)].map((_, i) => (
+              {[...Array(16)].map((_, i) => (
                 <motion.div
                   key={i}
-                  initial={{ 
-                    x: Math.random() * window.innerWidth, 
+                  initial={{
+                    x: (window.innerWidth / 16) * i + Math.random() * 80,
                     y: window.innerHeight + 100,
-                    rotate: 0 
+                    rotate: Math.random() * 360,
+                    scale: 0.4 + Math.random() * 0.5,
+                    opacity: 0.8,
                   }}
-                  animate={{ 
-                    y: -100,
-                    rotate: 360,
-                    x: (Math.random() - 0.5) * 200 + (Math.random() * window.innerWidth)
+                  animate={{
+                    y: -150,
+                    rotate: i % 2 === 0 ? 360 : -360,
+                    x: (window.innerWidth / 16) * i + (Math.random() - 0.5) * 150,
                   }}
-                  transition={{ 
-                    duration: Math.random() * 3 + 2, 
+                  transition={{
+                    duration: 2 + Math.random() * 3,
                     repeat: Infinity,
-                    ease: "linear"
+                    ease: "linear",
+                    delay: Math.random() * 2,
                   }}
-                  className="absolute w-2 h-2 rounded-full"
-                  style={{ backgroundColor: COLORS[i % COLORS.length] }}
-                />
+                  className="absolute w-32 h-32 rounded-2xl overflow-hidden shadow-lg"
+                >
+                  <img
+                    src={i % 3 === 0 ? "/images/nice-ku copy.jpg" : "/images/nice-ku.jpg"}
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
               ))}
             </div>
 
