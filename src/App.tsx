@@ -174,8 +174,8 @@ export default function App() {
             animate={{ y: 0, opacity: 1 }}
             className="text-center space-y-2"
           >
-            <h1 className="text-5xl md:text-5xl font-serif italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">
-              マッチングルーレット
+            <h1 className="text-3xl md:text-7xl lg:text-9xl font-serif italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">
+              ユーキ　ルーレット
             </h1>
           </motion.div>
           
@@ -308,7 +308,7 @@ export default function App() {
                 : 'bg-white text-black hover:bg-gray-100'}
             `}
           >
-            {isSpinning ? '回転中...' : items.length < 2 ? 'アイテムを追加' : '回す'}
+            {isSpinning ? '回転中...' : items.length < 2 ? '項目を追加' : '回す'}
             {!isSpinning && (
               <motion.div 
                 animate={{ opacity: [0.5, 1, 0.5] }}
@@ -325,9 +325,6 @@ export default function App() {
           {/* Section 1: テキスト追加 */}
           <div className="backdrop-blur-xl rounded-3xl border-2 border-blue-400/30 shadow-xl overflow-hidden">
             <div className="bg-blue-500/20 px-5 py-3 flex items-center gap-3 border-b border-blue-400/20">
-              <div className="w-7 h-7 rounded-xl bg-blue-500/40 flex items-center justify-center">
-                <Plus size={16} className="text-blue-300" />
-              </div>
               <h2 className="font-bold text-blue-200 text-sm tracking-wide">項目を追加</h2>
             </div>
             <div className="px-5 py-4 bg-blue-500/5">
@@ -353,9 +350,6 @@ export default function App() {
           {/* Section 2: 数字の範囲 */}
           <div className="backdrop-blur-xl rounded-3xl border-2 border-purple-400/30 shadow-xl overflow-hidden">
             <div className="bg-purple-500/20 px-5 py-3 flex items-center gap-3 border-b border-purple-400/20">
-              <div className="w-7 h-7 rounded-xl bg-purple-500/40 flex items-center justify-center">
-                <Sparkles size={14} className="text-purple-300" />
-              </div>
               <h2 className="font-bold text-purple-200 text-sm tracking-wide">数字の範囲で一括追加</h2>
             </div>
             <div className="px-5 py-4 bg-purple-500/5">
@@ -392,9 +386,6 @@ export default function App() {
           <div className="backdrop-blur-xl rounded-3xl border-2 border-emerald-400/30 shadow-xl overflow-hidden">
             <div className="bg-emerald-500/20 px-5 py-3 flex items-center justify-between border-b border-emerald-400/20">
               <div className="flex items-center gap-3">
-                <div className="w-7 h-7 rounded-xl bg-emerald-500/40 flex items-center justify-center">
-                  <Trophy size={14} className="text-emerald-300" />
-                </div>
                 <h2 className="font-bold text-emerald-200 text-sm tracking-wide">項目一覧</h2>
                 <span className="bg-emerald-500/30 text-emerald-300 text-xs font-bold px-2 py-0.5 rounded-full">{items.length}件</span>
               </div>
@@ -534,7 +525,7 @@ export default function App() {
                 transition={{ repeat: Infinity, duration: 2 }}
                 className="mb-8 inline-flex rounded-full overflow-hidden border-4 border-white/20 shadow-[0_0_40px_rgba(255,255,255,0.2)]"
               >
-                <img src="/images/IMG_2954 2.jpg" alt="" className="w-32 h-32 object-cover" />
+                <img src="/images/IMG_2954 2.jpg" alt="" className="w-48 h-48 object-cover" />
               </motion.div>
 
               <motion.div 
