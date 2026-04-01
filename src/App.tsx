@@ -169,7 +169,6 @@ export default function App() {
         backgroundImage: 'url(/images/tiktok-couple.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
       }}
     >
       <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
