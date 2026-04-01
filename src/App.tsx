@@ -36,7 +36,6 @@ export default function App() {
   const [winner, setWinner] = useState<RouletteItem | null>(null);
   const [particles, setParticles] = useState<Particle[]>([]);
   const wheelRef = useRef<HTMLDivElement>(null);
-  const topRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
 
   // Particle system logic
@@ -144,7 +143,6 @@ export default function App() {
   const spin = async () => {
     if (isSpinning || items.length < 2) return;
 
-    document.getElementById('root')?.scrollTo({ top: 0, behavior: 'smooth' });
     setIsSpinning(true);
     setWinner(null);
     setShowLetsGo(true);
