@@ -102,6 +102,7 @@ export default function App() {
   };
 
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [showLetsGo, setShowLetsGo] = useState(false);
   const [editingText, setEditingText] = useState('');
 
   const startEdit = (item: RouletteItem) => {
@@ -138,6 +139,8 @@ export default function App() {
 
     setIsSpinning(true);
     setWinner(null);
+    setShowLetsGo(true);
+    setTimeout(() => setShowLetsGo(false), 1400);
 
     const extraSpins = 25 + Math.random() * 15;
     const newRotation = rotation + extraSpins * 360 + Math.random() * 360;
@@ -174,7 +177,7 @@ export default function App() {
             animate={{ y: 0, opacity: 1 }}
             className="text-center space-y-2"
           >
-            <h1 className="text-3xl md:text-7xl lg:text-9xl font-serif italic tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">
+            <h1 className="text-3xl md:text-7xl lg:text-9xl font-sans tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-gray-500">
               ユーキ　ルーレット
             </h1>
           </motion.div>
@@ -503,6 +506,28 @@ export default function App() {
 
         </div>
       </div>
+
+      {/* Let's Go Animation */}
+      <AnimatePresence>
+        {showLetsGo && (
+          <motion.div
+            className="fixed inset-0 z-[200] flex items-center justify-center pointer-events-none"
+            style={{ marginTop: '-15vh' }}
+          >
+            <motion.img
+              src="/images/lets-go.jpg"
+              className="w-80 h-80 sm:w-120 sm:h-120 object-cover rounded-3xl shadow-2xl"
+              style={{ x: '-120vw' }}
+              animate={{ x: ['-120vw', '0vw', '0vw', '120vw'] }}
+              transition={{
+                duration: 1.4,
+                times: [0, 0.3, 0.65, 1],
+                ease: 'easeInOut',
+              }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Winner Modal - Deluxe Version */}
       <AnimatePresence>
