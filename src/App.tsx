@@ -36,6 +36,7 @@ export default function App() {
   const [winner, setWinner] = useState<RouletteItem | null>(null);
   const [particles, setParticles] = useState<Particle[]>([]);
   const wheelRef = useRef<HTMLDivElement>(null);
+  const topRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
 
   // Particle system logic
@@ -84,12 +85,18 @@ export default function App() {
   const addItem = () => {
     const trimmedText = newItemText.trim();
     if (!trimmedText) return;
-    setItems(prev => [...prev, {
-      id: Math.random().toString(36).substring(2, 11),
-      text: trimmedText,
-      color: COLORS[prev.length % COLORS.length],
-      weight: 1,
-    }]);
+    setItems(prev => {
+      const existing = prev.find(item => item.text === trimmedText);
+      if (existing) {
+        return prev.map(item => item.id === existing.id ? { ...item, weight: item.weight + 1 } : item);
+      }
+      return [...prev, {
+        id: Math.random().toString(36).substring(2, 11),
+        text: trimmedText,
+        color: COLORS[prev.length % COLORS.length],
+        weight: 1,
+      }];
+    });
     setNewItemText('');
   };
 
@@ -137,6 +144,7 @@ export default function App() {
   const spin = async () => {
     if (isSpinning || items.length < 2) return;
 
+    document.getElementById('root')?.scrollTo({ top: 0, behavior: 'smooth' });
     setIsSpinning(true);
     setWinner(null);
     setShowLetsGo(true);
@@ -158,7 +166,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen text-white font-sans p-4 md:p-8 overflow-hidden relative"
+    <div className="min-h-screen text-white font-sans p-4 md:p-8 relative"
       style={{
         backgroundImage: 'url(/images/tiktok-couple.jpg)',
         backgroundSize: 'cover',
